@@ -80,7 +80,7 @@ header {
     left: 10px;
     right: 10px;
     background: #1a252f;
-    padding: 120px;
+    padding: 150px;
     border-radius: 12px; /* Deixei arredondado para parecer um card flutuante */
     border: 2px solid var(--primary);
     box-shadow: 0 -4px 20px rgba(0,0,0,0.6);
