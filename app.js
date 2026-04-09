@@ -30,35 +30,57 @@ let estado = [];
 function render() {
     const grid = document.getElementById('app-grid');
     grid.innerHTML = '';
+
+    // Calcula o total de peças que ainda não saíram
+    const totalRestanteGlobal = estado.reduce((acc, item) => acc + item.atual, 0);
+
     estado.forEach((item, index) => {
         const card = document.createElement('div');
         card.className = `tile-card ${item.atual === 0 ? 'esgotado' : ''}`;
+        
+        // Probabilidade de tirar esta peça específica
+        const prob = totalRestanteGlobal > 0 
+            ? ((item.atual / totalRestanteGlobal) * 100).toFixed(1) 
+            : 0;
+
         card.innerHTML = `
             <img src="${item.img}" class="tile-img">
-            <div class="tile-count">${item.atual}</div>
+            <div class="tile-info">
+                <div class="tile-count">${item.qtd - item.atual} / ${item.qtd}</div>
+                <div class="tile-prob">${prob}%</div>
+            </div>
         `;
+
         card.onclick = () => {
-            if(item.atual > 0) {
+            if (item.atual > 0) {
                 item.atual--;
-                localStorage.setItem('progresso_carcassonne', JSON.stringify(estado));                
-                render();
+                salvarEAtualizar();
             }
         };
+
         grid.appendChild(card);
     });
 }
 
-document.getElementById('btn-reset').onclick = () => {
-    estado = baseDeDados.map(p => ({...p, atual: p.qtd}));
-    localStorage.removeItem('progresso_carcassonne');
+function salvarEAtualizar() {
+    localStorage.setItem('progresso_carcassonne', JSON.stringify(estado));
     render();
+}
+
+document.getElementById('btn-reset').onclick = () => {
+    if(confirm("Deseja reiniciar a contagem?")) {
+        estado = baseDeDados.map(p => ({ ...p, atual: p.qtd }));
+        localStorage.removeItem('progresso_carcassonne');
+        render();
+    }
 };
 
-// Iniciar
+// Inicialização
 const salvo = localStorage.getItem('progresso_carcassonne');
 if (salvo) {
     estado = JSON.parse(salvo);
     render();
 } else {
-    document.getElementById('btn-reset').click();
+    estado = baseDeDados.map(p => ({ ...p, atual: p.qtd }));
+    render();
 }
