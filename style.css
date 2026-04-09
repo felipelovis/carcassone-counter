@@ -1,17 +1,19 @@
 :root {
     --bg: #2c3e50;
     --card-bg: #ecf0f1;
+    --primary: #3498db;
     --danger: #e74c3c;
     --success: #27ae60;
+    --warning: #f39c12;
 }
 
 body {
-    font-family: sans-serif;
+    font-family: -apple-system, system-ui, sans-serif;
     background-color: var(--bg);
     color: white;
     margin: 0;
     padding: 15px;
-    -webkit-tap-highlight-color: transparent;
+    padding-bottom: 120px; /* Espaço para o histórico fixo */
 }
 
 header {
@@ -28,7 +30,6 @@ header {
     padding: 10px 15px;
     border-radius: 8px;
     font-weight: bold;
-    cursor: pointer;
 }
 
 #app-grid {
@@ -70,4 +71,52 @@ header {
     font-size: 0.85rem;
     color: var(--success);
     font-weight: bold;
+}
+
+/* PAINEL DE HISTÓRICO */
+#historico-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #1a252f;
+    padding: 12px 15px;
+    border-top: 4px solid var(--primary);
+    z-index: 100;
+}
+
+.historico-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+#btn-undo {
+    background: var(--warning);
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#btn-undo:disabled {
+    background: #7f8c8d;
+    opacity: 0.5;
+}
+
+.historico-lista {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+}
+
+.img-mini {
+    width: 45px;
+    height: 45px;
+    border-radius: 5px;
+    border: 2px solid white;
+    flex-shrink: 0;
 }

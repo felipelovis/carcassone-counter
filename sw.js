@@ -1,10 +1,6 @@
-const cacheName = 'carcassonne-v2'; // Mude o v2 para v3 se mudar algo no futuro
+const cacheName = 'carcassonne-v3';
 const assets = [
-    './',
-    './index.html',
-    './style.css',
-    './app.js',
-    './manifest.json',
+    './', './index.html', './style.css', './app.js', './manifest.json',
     './imagens/peca_a.jpeg', './imagens/peca_b.jpeg', './imagens/peca_c.jpeg',
     './imagens/peca_d.jpeg', './imagens/peca_e.jpeg', './imagens/peca_f.jpeg',
     './imagens/peca_g.jpeg', './imagens/peca_h.jpeg', './imagens/peca_i.jpeg',
@@ -15,27 +11,16 @@ const assets = [
     './imagens/peca_v.jpeg', './imagens/peca_w.jpeg', './imagens/peca_x.jpeg'
 ];
 
-self.addEventListener('install', event => {
+self.addEventListener('install', e => {
     self.skipWaiting();
-    event.waitUntil(
-        caches.open(cacheName).then(cache => cache.addAll(assets))
-    );
+    e.waitUntil(caches.open(cacheName).then(c => c.addAll(assets)));
 });
 
-self.addEventListener('activate', event => {
-    event.waitUntil(
-        caches.keys().then(keys => {
-            return Promise.all(keys
-                .filter(key => key !== cacheName)
-                .map(key => caches.delete(key))
-            );
-        })
-    );
+self.addEventListener('activate', e => {
+    e.waitUntil(caches.keys().then(ks => Promise.all(ks.map(k => k !== cacheName ? caches.delete(k) : null))));
     return self.clients.claim();
 });
 
-self.addEventListener('fetch', event => {
-    event.respondWith(
-        caches.match(event.request).then(res => res || fetch(event.request))
-    );
+self.addEventListener('fetch', e => {
+    e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
 });
