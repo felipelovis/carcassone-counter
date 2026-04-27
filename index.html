@@ -8,12 +8,48 @@
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    <header>
-        <h1>Carcassonne 🏰</h1>
-        <button id="btn-reset">Reiniciar</button>
-    </header>
+    <div id="top-bar">
+        <header>
+            <h1>Carcassonne 🏰</h1>
+            <button id="btn-reset">Reiniciar</button>
+        </header>
+        <nav id="tab-bar">
+            <button class="tab-btn ativo" data-tab="pecas" onclick="mudarAba('pecas')">🃏 Peças</button>
+            <button class="tab-btn" data-tab="mapa" onclick="mudarAba('mapa')">🗺️ Mapa</button>
+        </nav>
+    </div>
 
-    <main id="app-grid"></main>
+    <!-- Aba: Peças -->
+    <div id="tab-pecas">
+        <div id="filtro-bar">
+            <span class="filtro-label">Filtrar por feature:</span>
+            <button class="btn-filtro" data-feature="cidade" onclick="toggleFiltro('cidade')">🏰 Cidade</button>
+            <button class="btn-filtro" data-feature="estrada" onclick="toggleFiltro('estrada')">🛤️ Estrada</button>
+            <button class="btn-filtro" data-feature="mosteiro" onclick="toggleFiltro('mosteiro')">⛪ Mosteiro</button>
+            <button class="btn-filtro" data-feature="escudo" onclick="toggleFiltro('escudo')">🛡️ Escudo</button>
+        </div>
+        <div id="prob-filtro" hidden></div>
+        <main id="app-grid"></main>
+    </div>
+
+    <!-- Aba: Mapa -->
+    <div id="tab-mapa" hidden>
+        <div id="mapa-toolbar">
+            <div id="tile-selecionado-preview">
+                <div class="preview-badge">Selecione →</div>
+            </div>
+            <button id="btn-rotacionar">↻ Girar</button>
+            <button id="btn-remover-modo">✕ Remover</button>
+            <span class="mapa-dica">Toque na peça desejada abaixo, depois toque no mapa para colocar</span>
+        </div>
+        <div id="tile-picker"></div>
+        <div id="mapa-scroll">
+            <div id="mapa-grid"></div>
+        </div>
+    </div>
+
+    <!-- Histórico fixo (só visível na aba Peças) -->
+    <div id="historico-container"></div>
 
     <script src="app.js"></script>
     <script>
