@@ -4,19 +4,20 @@
     const prev = document.getElementById(ID);
     if (prev) { prev.style.display = prev.style.display === 'none' ? 'flex' : 'none'; return; }
 
+    const BASE = 'https://felipelovis.github.io/carcassone-counter/imagens/peca_';
     const TILES = [
-        { id: 'B', qtd: 4, f: ['m', 'e'] }, { id: 'A', qtd: 2, f: ['m'] },
-        { id: 'V', qtd: 9, f: ['e'] },       { id: 'U', qtd: 8, f: ['e'] },
-        { id: 'W', qtd: 4, f: ['e'] },       { id: 'X', qtd: 1, f: ['e'] },
-        { id: 'C', qtd: 1, f: ['c', 's'] },  { id: 'I', qtd: 2, f: ['c'] },
-        { id: 'G', qtd: 1, f: ['c'] },       { id: 'F', qtd: 2, f: ['c', 's'] },
-        { id: 'E', qtd: 5, f: ['c'] },       { id: 'H', qtd: 3, f: ['c'] },
-        { id: 'D', qtd: 4, f: ['c', 'e'] },  { id: 'J', qtd: 3, f: ['c', 'e'] },
-        { id: 'K', qtd: 3, f: ['c', 'e'] },  { id: 'L', qtd: 3, f: ['c', 'e'] },
-        { id: 'N', qtd: 3, f: ['c'] },       { id: 'M', qtd: 2, f: ['c', 's'] },
-        { id: 'P', qtd: 3, f: ['c', 'e'] },  { id: 'O', qtd: 2, f: ['c', 'e', 's'] },
-        { id: 'R', qtd: 3, f: ['c'] },       { id: 'Q', qtd: 1, f: ['c', 's'] },
-        { id: 'T', qtd: 1, f: ['c', 'e'] },  { id: 'S', qtd: 2, f: ['c', 'e', 's'] },
+        { id: 'B', qtd: 4, f: ['m', 'e'], img: BASE+'b.jpeg' }, { id: 'A', qtd: 2, f: ['m'],         img: BASE+'a.jpeg' },
+        { id: 'V', qtd: 9, f: ['e'],       img: BASE+'v.jpeg' }, { id: 'U', qtd: 8, f: ['e'],         img: BASE+'u.jpeg' },
+        { id: 'W', qtd: 4, f: ['e'],       img: BASE+'w.jpeg' }, { id: 'X', qtd: 1, f: ['e'],         img: BASE+'x.jpeg' },
+        { id: 'C', qtd: 1, f: ['c', 's'], img: BASE+'c.jpeg' }, { id: 'I', qtd: 2, f: ['c'],         img: BASE+'i.jpeg' },
+        { id: 'G', qtd: 1, f: ['c'],       img: BASE+'g.jpeg' }, { id: 'F', qtd: 2, f: ['c', 's'],   img: BASE+'f.jpeg' },
+        { id: 'E', qtd: 5, f: ['c'],       img: BASE+'e.jpeg' }, { id: 'H', qtd: 3, f: ['c'],         img: BASE+'h.jpeg' },
+        { id: 'D', qtd: 4, f: ['c', 'e'], img: BASE+'d.jpeg' }, { id: 'J', qtd: 3, f: ['c', 'e'],   img: BASE+'j.jpeg' },
+        { id: 'K', qtd: 3, f: ['c', 'e'], img: BASE+'k.jpeg' }, { id: 'L', qtd: 3, f: ['c', 'e'],   img: BASE+'l.jpeg' },
+        { id: 'N', qtd: 3, f: ['c'],       img: BASE+'n.jpeg' }, { id: 'M', qtd: 2, f: ['c', 's'],   img: BASE+'m.jpeg' },
+        { id: 'P', qtd: 3, f: ['c', 'e'], img: BASE+'p.jpeg' }, { id: 'O', qtd: 2, f: ['c','e','s'], img: BASE+'o.jpeg' },
+        { id: 'R', qtd: 3, f: ['c'],       img: BASE+'r.jpeg' }, { id: 'Q', qtd: 1, f: ['c', 's'],   img: BASE+'q.jpeg' },
+        { id: 'T', qtd: 1, f: ['c', 'e'], img: BASE+'t.jpeg' }, { id: 'S', qtd: 2, f: ['c','e','s'], img: BASE+'s.jpeg' },
     ];
 
     const ICONS = { c: '🏰', e: '🛤️', m: '⛪', s: '🛡️' };
@@ -81,10 +82,10 @@
             const bord = !esgotado && filtros.size > 0 && match ? '3px solid #3498db' : '2px solid #34495e';
             const cor  = esgotado ? '#e74c3c' : '#2ecc71';
             const ficons = t.f.map(f => ICONS[f]).join('');
-            return `<button onclick="window._crcReg(${i})" style="flex-shrink:0;opacity:${op};background:#1e2d3a;color:white;border:${bord};border-radius:10px;width:72px;height:90px;cursor:${esgotado ? 'default' : 'pointer'};text-align:center;padding:6px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:border-color .15s">
-                <span style="font-size:13px;line-height:1">${ficons}</span>
-                <strong style="font-size:22px;line-height:1.1">${t.id}</strong>
-                <span style="font-size:14px;color:${cor};font-weight:700;line-height:1">${t.atual}x</span>
+            return `<button onclick="window._crcReg(${i})" title="Peça ${t.id} — ${t.f.map(f => NAMES[f]).join(', ')}" style="flex-shrink:0;opacity:${op};background:#1e2d3a;color:white;border:${bord};border-radius:10px;width:82px;height:106px;cursor:${esgotado ? 'default' : 'pointer'};padding:4px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:2px;overflow:hidden">
+                <img src="${t.img}" style="width:74px;height:74px;border-radius:6px;display:block;object-fit:cover;${esgotado ? 'filter:grayscale(1)' : ''}">
+                <span style="font-size:11px;line-height:1">${ficons}</span>
+                <span style="font-size:15px;color:${cor};font-weight:700;line-height:1">${t.atual}x</span>
             </button>`;
         }).join('');
 
