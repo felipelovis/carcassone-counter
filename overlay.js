@@ -102,30 +102,30 @@
             const bord = filtros.size > 0 && match && t.atual > 0 ? '2px solid #3498db' : '1px solid #34495e';
             const cor = t.atual === 0 ? '#e74c3c' : '#27ae60';
             const ficons = t.f.map(f => ICONS[f]).join('');
-            return `<button onclick="window._crcReg(${i})" style="opacity:${op};background:#243342;color:white;border:${bord};border-radius:6px;padding:5px 4px;font-size:11px;cursor:pointer;min-width:38px;text-align:center;line-height:1.3">
-                <div style="font-size:9px;margin-bottom:1px">${ficons}</div>
-                <strong style="font-size:13px">${t.id}</strong>
-                <div style="color:${cor};font-size:10px">${t.atual}x</div>
+            return `<button onclick="window._crcReg(${i})" style="opacity:${op};background:#243342;color:white;border:${bord};border-radius:8px;padding:8px 6px;font-size:13px;cursor:pointer;min-width:52px;text-align:center;line-height:1.4">
+                <div style="font-size:11px;margin-bottom:2px">${ficons}</div>
+                <strong style="font-size:16px">${t.id}</strong>
+                <div style="color:${cor};font-size:12px;font-weight:bold">${t.atual}x</div>
             </button>`;
         }).join('');
 
         panel.innerHTML = `
-            <div id="_crc_drag" style="background:#1a252f;padding:8px 12px;border-bottom:1px solid #34495e;display:flex;justify-content:space-between;align-items:center;cursor:move;border-radius:10px 10px 0 0">
-                <strong style="font-size:13px;letter-spacing:.5px">🏰 Carcassonne</strong>
-                <div style="display:flex;align-items:center;gap:8px">
-                    <span style="color:#666;font-size:11px">${total} peças</span>
-                    <button onclick="window._crcReset()" style="background:none;border:none;color:#e74c3c;font-size:12px;cursor:pointer;padding:0" title="Reiniciar">↺</button>
-                    <button onclick="document.getElementById('${ID}').style.display='none'" style="background:none;border:none;color:#95a5a6;font-size:16px;cursor:pointer;padding:0" title="Minimizar">−</button>
-                    <button onclick="document.getElementById('${ID}').remove()" style="background:none;border:none;color:#e74c3c;font-size:16px;cursor:pointer;padding:0" title="Fechar">✕</button>
+            <div id="_crc_drag" style="background:#1a252f;padding:10px 14px;border-bottom:1px solid #34495e;display:flex;justify-content:space-between;align-items:center;cursor:move;border-radius:10px 10px 0 0">
+                <strong style="font-size:15px;letter-spacing:.5px">🏰 Carcassonne</strong>
+                <div style="display:flex;align-items:center;gap:10px">
+                    <span style="color:#666;font-size:13px">${total} peças</span>
+                    <button onclick="window._crcReset()" style="background:none;border:none;color:#e74c3c;font-size:15px;cursor:pointer;padding:0" title="Reiniciar">↺</button>
+                    <button onclick="document.getElementById('${ID}').style.display='none'" style="background:none;border:none;color:#95a5a6;font-size:20px;cursor:pointer;padding:0" title="Minimizar">−</button>
+                    <button onclick="document.getElementById('${ID}').remove()" style="background:none;border:none;color:#e74c3c;font-size:20px;cursor:pointer;padding:0" title="Fechar">✕</button>
                 </div>
             </div>
-            <div style="padding:10px 12px">
-                <div style="margin-bottom:2px">${filtBtns}</div>
+            <div style="padding:12px 14px">
+                <div style="margin-bottom:4px">${filtBtns}</div>
                 ${probHtml}
-                <div style="display:flex;flex-wrap:wrap;gap:5px;max-height:200px;overflow-y:auto;padding:2px 0">${tileBtns}</div>
-                <div style="margin-top:8px;border-top:1px solid #34495e;padding-top:8px;display:flex;align-items:center;gap:8px">
-                    <button onclick="window._crcUndo()" ${hist.length === 0 ? 'disabled' : ''} style="background:#f39c12;color:white;border:none;border-radius:5px;padding:5px 12px;font-size:11px;cursor:pointer;opacity:${hist.length === 0 ? .4 : 1}">↩ Desfazer</button>
-                    <span style="font-size:10px;color:#666">${hist.length} no histórico</span>
+                <div style="display:flex;flex-wrap:wrap;gap:6px;max-height:260px;overflow-y:auto;padding:4px 0">${tileBtns}</div>
+                <div style="margin-top:10px;border-top:1px solid #34495e;padding-top:10px;display:flex;align-items:center;gap:10px">
+                    <button onclick="window._crcUndo()" ${hist.length === 0 ? 'disabled' : ''} style="background:#f39c12;color:white;border:none;border-radius:6px;padding:7px 16px;font-size:13px;cursor:pointer;opacity:${hist.length === 0 ? .4 : 1}">↩ Desfazer</button>
+                    <span style="font-size:12px;color:#666">${hist.length} no histórico</span>
                 </div>
             </div>
         `;
@@ -140,7 +140,7 @@
         position: fixed;
         top: 20px;
         right: 20px;
-        width: 330px;
+        width: 440px;
         background: #2c3e50;
         border: 2px solid #3498db;
         border-radius: 10px;
