@@ -36,12 +36,12 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 15px;
+    padding: 6px 10px;
 }
 
 header h1 {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: 1rem;
 }
 
 #btn-reset {
@@ -62,7 +62,7 @@ header h1 {
 
 .tab-btn {
     flex: 1;
-    padding: 11px;
+    padding: 7px;
     background: transparent;
     color: #95a5a6;
     border: none;
@@ -80,16 +80,16 @@ header h1 {
 
 /* ===== ABA PEÇAS ===== */
 #tab-pecas {
-    padding: 14px 15px;
+    padding: 8px 10px;
 }
 
 /* ===== FILTRO ===== */
 #filtro-bar {
     display: flex;
-    gap: 8px;
+    gap: 5px;
     align-items: center;
     flex-wrap: wrap;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .filtro-label {
@@ -103,9 +103,9 @@ header h1 {
     background: #34495e;
     color: white;
     border: 2px solid transparent;
-    padding: 7px 13px;
+    padding: 4px 9px;
     border-radius: 20px;
-    font-size: 0.82rem;
+    font-size: 0.75rem;
     cursor: pointer;
     transition: background 0.2s, border-color 0.2s;
 }
@@ -157,8 +157,8 @@ header h1 {
 /* ===== GRID DE PEÇAS ===== */
 #app-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+    gap: 7px;
 }
 
 .tile-card {
@@ -196,7 +196,7 @@ header h1 {
 }
 
 .tile-info {
-    padding: 6px 4px 8px;
+    padding: 3px 4px 5px;
 }
 
 .tile-features {
@@ -207,7 +207,7 @@ header h1 {
 }
 
 .tile-count {
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-weight: 800;
 }
 
@@ -224,7 +224,7 @@ header h1 {
     left: 0;
     right: 0;
     background: var(--panel-bg);
-    padding: 10px 15px 12px;
+    padding: 6px 10px 8px;
     border-top: 2px solid var(--primary);
     box-shadow: 0 -4px 20px rgba(0,0,0,0.6);
     z-index: 100;
